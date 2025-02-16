@@ -1,6 +1,6 @@
 # 🚀 Expo + Next.js + React Native Boilerplate
 
-This project integrates **Expo**, **Next.js**, and **React Native** in a monorepo structure, offering seamless cross-platform development.
+This project integrates **Expo**, **Next.js**, and **React Native**, offering seamless cross-platform development.
 
 ## 📂 Project Structure
 
