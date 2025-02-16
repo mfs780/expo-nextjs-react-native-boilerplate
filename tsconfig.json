@@ -1,14 +1,35 @@
-/* eslint-disable jsonc/sort-keys */
 {
+  "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "target": "ES2023",
+    "strict": true,
     "incremental": true,
+    "module": "esnext",
+    "isolatedModules": true,
+    "jsx": "react-native",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "target": "ES2017",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "paths": {
+      "@/*": [
+        "./*"
+      ]
+    },
     "declaration": true,
     "newLine": "lf",
-    "strict": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
     "noEmitOnError": true,
@@ -23,36 +44,19 @@
     "forceConsistentCasingInFileNames": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
     "outDir": "dist",
-    "resolveJsonModule": true,
-    "strictPropertyInitialization": true,
-    "preserveConstEnums": true,
-    "alwaysStrict": true,
-    "strictNullChecks": true,
-    "noUncheckedIndexedAccess": true,
-    "noImplicitAny": true,
-    "noImplicitThis": true,
-    "allowSyntheticDefaultImports": true,
-    "allowJs": true,
-    "checkJs": true,
-    "jsx": "preserve",
-    "noEmit": true,
-    "isolatedModules": true,
-    // Path aliases
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"],
-      "@/public/*": ["./public/*"]
-    },
-    // Editor support
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ]
+    "strictPropertyInitialization": true
   },
-  "exclude": ["./out/**/*", "./node_modules/**/*", "**/*.spec.ts", "**/*.e2e.ts"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "**/*.mts"]
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".expo/types/**/*.ts",
+    "expo-env.d.ts",
+    ".next/types/**/*.ts",
+    "next.config.ts",
+    "nativewind-env.d.ts"
+  ],
+  "types": [
+    "tailwindcss"
+  ]
 }
