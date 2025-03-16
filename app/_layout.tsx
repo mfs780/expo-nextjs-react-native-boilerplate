@@ -7,6 +7,11 @@ import { useFonts } from 'expo-font';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import 'react-native-reanimated';
 import '../style/global.css';
+import { Slot } from "expo-router";
+import { useAuthListener } from "../config/firebase";
+import { useAuthStore } from "../store/authStore";
+import AuthenticationScreen from '@/components/AuthenticationScreen';
+import LoadingScreen from "@/components/LoadingScreen";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -22,15 +27,19 @@ export default function RootLayout() {
 
   const theme = useMemo(() => (colorScheme === 'dark' ? DarkTheme : DefaultTheme), [colorScheme]);
 
-  if (!fontsLoaded) return <StatusBar style="auto" />;
-
-  return (
-    <ThemeProvider value={theme}>
-      <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="(native)/index" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" options={{ headerShown: false }} />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
-  );
+  // Initialize auth listener
+  useAuthListener();
+  const { user, isLoading } = useAuthStore();
+  
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
+  
+  // If not authenticated, show login screen
+  if (!user) {
+    return <AuthenticationScreen />;
+  }
+  
+  // User is authenticated
+  return <Slot />;
 }
